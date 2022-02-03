@@ -30,6 +30,10 @@ Once the window is open you can right click in the grey box to the left hand sid
 
 Once the bundle is created drag all your animations to the right hand panel to add them to the AssetBundle - once again make note of what you name each animation in this bundle as this is how you will refer to it in code later - then once all your animations are imported click the "Build" tab of the AssetBundle browser, change the Output path to whatever you desire now press the "Build" button.
 
+![image](https://user-images.githubusercontent.com/3288858/152447347-24378fa0-e743-42a5-90c9-8243a36950c0.png)
+![image](https://user-images.githubusercontent.com/3288858/152447362-dfb97ecd-ad38-4a3c-84bc-ad732e2ed5e9.png)
+
+
 Once built navigate to the Output Path folder you set, inside here you will find the bundle you created with the same file name as the AssetBundle you created, this is the only file you need you can ignore the .manifest file. 
 
 ![image](https://user-images.githubusercontent.com/3288858/152447079-8dc00268-c0de-4eb6-a3fe-d671905ff24a.png)
@@ -43,9 +47,124 @@ In this example I changed the HumanIdle animation to Capoeira dancing, so my Ass
 Now you need to copy this asset bundle into your Mod folder *inside your r2modman profile folder* 
 
 
-Here I created a folder called "AnimatorOverride" inside my BepInEx/plugins folder and within that I created a folder called SideLoader as per the SideLoader instructions, then finally inside the SideLoader folder create another Folder called AssetBundles and place your AssetBundle file in here. 
+Here I created a folder called "AnimatorOverride" inside my BepInEx/plugins folder and within that I created a folder called SideLoader as per the SideLoader instructions then finally inside the SideLoader folder create another folder called AssetBundles and place your AssetBundle file inside this folder. 
 
 ![image](https://user-images.githubusercontent.com/3288858/152447249-b4d3778b-abae-4a50-a30c-dc9759071462.png)
 
 
 Example : "TestProfile/BepInEx/plugins/YourModFolder/SideLoader/AssetBundles/"
+
+
+
+Once you have done all that, you should be ready to actually override some animations, this requires creating a new AnimatorOverride Controller and overriding the animations you need by name, I have included a list of each animation name.
+
+[message.txt](https://github.com/Grim-/OutwardAnimationOverride/files/7998984/message.txt)
+
+
+```using BepInEx;
+using BepInEx.Configuration;
+using BepInEx.Logging;
+using HarmonyLib;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using UnityEngine;
+using SideLoader;
+
+namespace OutwardAOCTest
+{
+    [BepInDependency(SL.GUID, BepInDependency.DependencyFlags.HardDependency)]
+    [BepInPlugin(GUID, NAME, VERSION)]
+    public class OutwardAnimatorOverrideTest : BaseUnityPlugin
+    {
+        // Choose a GUID for your project. Change "myname" and "mymod".
+        public const string GUID = "emo.aoctest";
+        // Choose a NAME for your project, generally the same as your Assembly Name.
+        public const string NAME = "Animation Override Controller Test";
+        // Increment the VERSION when you release a new version of your mod.
+        public const string VERSION = "1.0.0";
+
+        // For accessing your BepInEx Logger from outside of this class (MyMod.Log)
+        internal static ManualLogSource Log;
+
+        // If you need settings, define them like so:
+        public static ConfigEntry<bool> ExampleConfig;
+
+        // Awake is called when your plugin is created. Use this to set up your mod.
+        internal void Awake()
+        {
+            Log = this.Logger;
+
+            //we register to the OnSceneLoaded event as we need the character to exist in scene before we can override it's AnimatorController.
+            SL.OnSceneLoaded += OnSceneLoaded;
+
+        }
+
+        /// We could technically just assign OverrideClip to the OnSceneLoaded event but I wanted to be explicit in what code does what.
+        private void OnSceneLoaded()
+        {
+            OverrideClip();
+        }
+
+
+        private void OverrideClip()
+        {
+            //reference animation clip from AssetBundle if you have followed the guide then these names should be familiar to you, the first name is the name of the AssetBundle and the second is the name of the animation asset itself
+           
+            //reference our SideLoaderPack we created by name (covered in SL docs), I called mine AnimatorOverride
+            SLPack sideLoaderPack = SL.GetSLPack("AnimatorOverride");
+
+            //create a new animationclip then set its reference equal to our animation clip in our bundle, make sure we cast this back to an AnimationClip
+            AnimationClip newClip = sideLoaderPack.AssetBundles["capoeira"].LoadAsset<AnimationClip>("capoeira");
+
+           //create new animation override controller from base runTimeAnimatorController
+            AnimatorOverrideController animationOverrideController = new AnimatorOverrideController(GetPlayerCharacter().Animator.runtimeAnimatorController);
+
+
+            //find the HumanIdleNeutral_a clip (there is a list on the GitHub of all animations)
+            AnimationClip originalClip = GetClipByName(animationOverrideController, "HumanIdleNeutral_a");
+
+            //override the clip in the AnimatorOverrideController
+            animationOverrideController.SetClip(originalClip, newClip, true);
+
+            //assign the new AnimatorOverrideController to the runTimeAnimatorController property
+            GetPlayerCharacter().Animator.runtimeAnimatorController = animationOverrideController;
+
+        }
+
+
+
+        /// <summary>
+        /// Finds and returns a AnimationClip by name in the AnimatorOverrideController
+        /// </summary>
+        /// <param name="overrideController"></param>
+        /// <param name="clipName"></param>
+        /// <returns></returns>
+        private AnimationClip GetClipByName(AnimatorOverrideController overrideController, string clipName)
+        {
+            Log.LogMessage($"Founding  clip with {clipName} name");
+
+            foreach (var item in overrideController.animationClips)
+            {
+                if (item.name == clipName)
+                {
+                    return item;
+                }
+            }
+
+
+            Log.LogMessage($"Found no clip with {clipName}");
+            return null;
+        }
+
+
+        //this is not a good way to get the character reference!! 
+        //I've been away awhile and this was the quickest method I could find at short notice :D
+        private Character GetPlayerCharacter()
+        {
+            return CharacterManager.Instance.Characters.m_values[0];
+        }
+}
+}```
+
