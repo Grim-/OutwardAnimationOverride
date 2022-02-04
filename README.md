@@ -1,7 +1,7 @@
 # OutwardAnimationOverride
 A simple example of how to use Animator Override Controllers to change animations in Outward.
 
-https://imgur.com/3TV3t5w
+<blockquote class="imgur-embed-pub" lang="en" data-id="3TV3t5w" data-context="false" ><a href="//imgur.com/3TV3t5w"></a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
 
 
 ## Still in Testing
