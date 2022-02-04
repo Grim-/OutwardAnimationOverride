@@ -10,6 +10,8 @@ So equipping a weapon may full well override your own AnimatorOverrideController
 This guide assumes you have followed the guides on how to set up your initial Outward Mod project https://outward.fandom.com/wiki/Installing_Mods and have also installed Sinai's SideLoader https://sinai-dev.github.io/OSLDocs/#/ - these are both required.
 
  
+ ## Guide 
+ 
 In order to import an AnimationClip correctly into Unity you first need to configure and set up all the animations in a Unity Project, for this example I used the recommended 2018.4.8f1.
 
 Create a new Unity Project with Editor Version 2018.4.8f1, import the animations you want to use into Unity, you can either drag and drop the files into the Asset folder or use "Assets/Import New Asset" from the menu bar.
@@ -59,7 +61,6 @@ Here I created a folder called "AnimatorOverride" inside my BepInEx/plugins fold
 
 
 Example : "TestProfile/BepInEx/plugins/YourModFolder/SideLoader/AssetBundles/"
-
 
 
 Once you have done all that, you should be ready to actually override some animations, this requires creating a new AnimatorOverride Controller and overriding the animations you need by name, I have included a list of each animation name.
