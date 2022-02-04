@@ -1,15 +1,16 @@
 # OutwardAnimationOverride
 A simple example of how to use Animator Override Controllers to change animations in Outward.
 
-https://i.imgur.com/3TV3t5w.mp4
-
 ## Still in Testing
 I'd like to preface this by saying, this is still early days, while you can successfully change an animation using this, I haven't tested it fully yet and there is every chance that Outwards Weapon Animations use a similar system for the different Weapon Animation Stances.
 
 So equipping a weapon may full well override your own AnimatorOverrideController but with more testing and understanding of the animation system I dont believe it's a deal breaker - also if the Animation Events for Attacking, Drinking, Using etc are tied to directly to the clip itself then these events wont fire when you override the clip, that does not mean this is useless however as we can configure clips in Unity beforehand to call these events ourselves, with the possibility of writing a script that does this automatically.
 
 
-This guide assumes you have followed the guides on how to set up your initial Outward Mod project https://outward.fandom.com/wiki/Installing_Mods and have also installed Sinai's SideLoader https://sinai-dev.github.io/OSLDocs/#/ - these are both required.
+This guide assumes you have followed the guides on how to set up your initial Outward Mod project 
+https://outward.fandom.com/wiki/Installing_Mods 
+and have also installed Sinai's SideLoader https://sinai-dev.github.io/OSLDocs/#/ 
+these are both required.
 
  
  ## Guide 
