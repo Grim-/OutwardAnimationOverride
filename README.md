@@ -1,8 +1,7 @@
 # OutwardAnimationOverride
 A simple example of how to use Animator Override Controllers to change animations in Outward.
 
-<blockquote class="imgur-embed-pub" lang="en" data-id="3TV3t5w" data-context="false" ><a href="//imgur.com/3TV3t5w"></a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
-
+https://i.imgur.com/3TV3t5w.mp4
 
 ## Still in Testing
 I'd like to preface this by saying, this is still early days, while you can successfully change an animation using this, I haven't tested it fully yet and there is every chance that Outwards Weapon Animations use a similar system for the different Weapon Animation Stances.
