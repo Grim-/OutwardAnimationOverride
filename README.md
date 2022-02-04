@@ -61,7 +61,8 @@ Once you have done all that, you should be ready to actually override some anima
 [message.txt](https://github.com/Grim-/OutwardAnimationOverride/files/7998984/message.txt)
 
 
-```using BepInEx;
+```C#
+using BepInEx;
 using BepInEx.Configuration;
 using BepInEx.Logging;
 using HarmonyLib;
