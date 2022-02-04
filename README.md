@@ -15,7 +15,7 @@ these are both required.
  
  ## Guide 
  
-In order to import an AnimationClip correctly into Unity you first need to configure and set up all the animations in a Unity Project, for this example I used the recommended 2018.4.8f1.
+In order to import an AnimationClip correctly into Outward via SideLoader you first need to configure and set up all the animations in a Unity Project, for this example I used the recommended 2018.4.8f1.
 
 Create a new Unity Project with Editor Version 2018.4.8f1, import the animations you want to use into Unity, you can either drag and drop the files into the Asset folder or use "Assets/Import New Asset" from the menu bar.
 
