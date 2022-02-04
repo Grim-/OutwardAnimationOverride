@@ -58,7 +58,7 @@ Example : "TestProfile/BepInEx/plugins/YourModFolder/SideLoader/AssetBundles/"
 
 Once you have done all that, you should be ready to actually override some animations, this requires creating a new AnimatorOverride Controller and overriding the animations you need by name, I have included a list of each animation name.
 
-[message.txt](https://github.com/Grim-/OutwardAnimationOverride/files/7998984/message.txt)
+[Animations List](https://github.com/Grim-/OutwardAnimationOverride/files/7998984/message.txt)
 
 
 ```C#
