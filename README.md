@@ -3,12 +3,6 @@ A simple example of how to use Animator Override Controllers to change animation
 
 https://imgur.com/3TV3t5w
 
-## Still in Testing
-I'd like to preface this by saying, this is still early days, while you can successfully change an animation using this, I haven't tested it fully yet and there is every chance that Outwards Weapon Animations use a similar system for the different Weapon Animation Stances.
-
-So equipping a weapon may full well override your own AnimatorOverrideController but with more testing and understanding of the animation system I dont believe it's a deal breaker - also if the Animation Events for Attacking, Drinking, Using etc are tied to directly to the clip itself then these events wont fire when you override the clip, that does not mean this is useless however as we can configure clips in Unity beforehand to call these events ourselves, with the possibility of writing a script that does this automatically.
-
-
 This guide assumes you have followed the guides on how to set up your initial Outward Mod project 
 https://outward.fandom.com/wiki/Installing_Mods 
 and have also installed Sinai's SideLoader https://sinai-dev.github.io/OSLDocs/#/ 
@@ -25,10 +19,24 @@ Create a new Unity Project with Editor Version 2018.4.8f1, import the animations
 
 Once you have imported the AnimationClip files in (these are also stored inside FBX files so check there if you can't find them) you need to click them in your assets folder, this will bring up the import settings for this file in the inspector, there are four tabs - "Model", "Rig", "Animation" and "Materials" we need the second tab "Rig" on this tab you will see a "Animation Type" dropdown, this must be set to "Humanoid" otherwise the character model will sink into the floor, this is because the character animator component is set to work with Humanoid animations only.
 
+
+
+
 ![image](https://user-images.githubusercontent.com/3288858/152446718-5c4d79d2-ec55-4eb4-a197-5e479427a4d1.png)
 
 
 Once the animation type is set to Humanoid, we now need to create an AssetBundle of all the animations. 
+
+Some notes regarding setting up Animation clips
+
+- The clips must be made for Humanoid animation rigs
+- The Players Character seems to use Root motion - So you can use Root motion clips
+- Sometimes you may need to set the animation clip to loop if an animation should loop, such as Idle by checking 'Loop Time' in the "Animation" tab.
+- Some animations may cause the character to run at an angle, you can usually fix this by view the "Animation" tab and checking "Bake Into Pose" for Root Transform Rotation - usally the "Based Upon" option wants to be set to "Original"
+- You can also use the "Animation" tab to mirror a Animation for example, mirror a RightTurn animation into a LeftTurn animation.
+
+![image](https://user-images.githubusercontent.com/3288858/153335323-4e8ff6c8-8078-47c3-bb7f-20038e33ae26.png)
+
 
 
 Click "Window > AssetBundle Browser" to open the AssetBundle browser, if you don't have this option under the "Window" menu bar option, you need to install the AssetBundles package from the Unity Package Manager under "Window > Package Manager" and install the AssetBundle Browser package. 
@@ -75,7 +83,7 @@ Once you have done all that, you should be ready to actually override some anima
 
 ## Example
 
- Below is an example of how the CustomAnimatorOverride's and the AnimatorControllerManager can be used, to use it in your mod for now you must include the OutwardAnimatorOverrideTest.dll in the Release folder (https://github.com/Grim-/OutwardAnimationOverride/tree/main/OutwardModTemplate-main/Release) as part of your project you can then use it as below - this will be replaced and integrated into https://github.com/sinai-dev/Outward-SideLoader later 
+ Below is an example of how the CustomAnimatorOverride's and the AnimatorControllerManager can be used, to use it in your mod for now you must include the OutwardAnimatorOverrideTest.dll in the Release folder (https://github.com/Grim-/OutwardAnimationOverride/tree/main/OutwardModTemplate-main/Release) then include it as as part of your project you can then use it as below - this will be replaced and integrated into https://github.com/sinai-dev/Outward-SideLoader later 
 
 ```C#
 using BepInEx;
@@ -87,6 +95,7 @@ using System.Text;
 using UnityEngine;
 using SideLoader;
 using System.Reflection;
+//Add the custom namespace
 using OutwardEmoAnim;
 
 //It seems sign up is still free on https://www.mixamo.com/#/ 
