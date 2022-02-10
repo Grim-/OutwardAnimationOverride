@@ -87,7 +87,7 @@ using System.Text;
 using UnityEngine;
 using SideLoader;
 using System.Reflection;
-
+using OutwardEmoAnim;
 
 //It seems sign up is still free on https://www.mixamo.com/#/ 
 
@@ -273,7 +273,5 @@ namespace OutwardAOCTest
         #endregion
     }
 }
-
-
 ```
 
