@@ -75,7 +75,7 @@ Once you have done all that, you should be ready to actually override some anima
 
 ## Example
 
- Below is an example of how the CustomAnimatorOverride's and the AnimatorControllerManager can be used, to use it in your mod for now you must include the OutwardAnimatorOverrideTest.dll in the Release folder as part of your project you can then use it as below - this will be replaced and integrated into https://github.com/sinai-dev/Outward-SideLoader later 
+ Below is an example of how the CustomAnimatorOverride's and the AnimatorControllerManager can be used, to use it in your mod for now you must include the OutwardAnimatorOverrideTest.dll in the Release folder (https://github.com/Grim-/OutwardAnimationOverride/tree/main/OutwardModTemplate-main/Release) as part of your project you can then use it as below - this will be replaced and integrated into https://github.com/sinai-dev/Outward-SideLoader later 
 
 ```C#
 using BepInEx;
@@ -87,7 +87,7 @@ using System.Text;
 using UnityEngine;
 using SideLoader;
 using System.Reflection;
-
+using OutwardEmoAnim;
 
 //It seems sign up is still free on https://www.mixamo.com/#/ 
 
@@ -273,7 +273,5 @@ namespace OutwardAOCTest
         #endregion
     }
 }
-
-
 ```
 
