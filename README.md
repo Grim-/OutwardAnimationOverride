@@ -19,10 +19,24 @@ Create a new Unity Project with Editor Version 2018.4.8f1, import the animations
 
 Once you have imported the AnimationClip files in (these are also stored inside FBX files so check there if you can't find them) you need to click them in your assets folder, this will bring up the import settings for this file in the inspector, there are four tabs - "Model", "Rig", "Animation" and "Materials" we need the second tab "Rig" on this tab you will see a "Animation Type" dropdown, this must be set to "Humanoid" otherwise the character model will sink into the floor, this is because the character animator component is set to work with Humanoid animations only.
 
+
+
+
 ![image](https://user-images.githubusercontent.com/3288858/152446718-5c4d79d2-ec55-4eb4-a197-5e479427a4d1.png)
 
 
 Once the animation type is set to Humanoid, we now need to create an AssetBundle of all the animations. 
+
+Some notes regarding setting up Animation clips
+
+- The clips must be made for Humanoid animation rigs
+- The Players Character seems to use Root motion - So you can use Root motion clips
+- Sometimes you may need to set the animation clip to loop if an animation should loop, such as Idle.
+- Some animations may cause the character to run at an angle, you can usually fix this by view the "Animation" tab and checking "Bake Into Pose" for Root Transform Rotation - usally the "Based Upon" option wants to be set to "Original"
+- You can also use the "Animation" tab to mirror a Animation for example, mirror a RightTurn animation into a LeftTurn animation.
+
+![image](https://user-images.githubusercontent.com/3288858/153335323-4e8ff6c8-8078-47c3-bb7f-20038e33ae26.png)
+
 
 
 Click "Window > AssetBundle Browser" to open the AssetBundle browser, if you don't have this option under the "Window" menu bar option, you need to install the AssetBundles package from the Unity Package Manager under "Window > Package Manager" and install the AssetBundle Browser package. 
