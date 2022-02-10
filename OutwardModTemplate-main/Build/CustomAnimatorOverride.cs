@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 
 
-namespace OutwardAOCTest
+namespace OutwardEmoAnim
 {
     [System.Serializable]
     public class CustomAnimatorOverride
@@ -45,12 +45,12 @@ namespace OutwardAOCTest
             {
                 if (item.name == clipName)
                 {
-                    OutwardAnimatorOverrideTest.Log.LogMessage("Current Override Found Clip With Name : " + clipName);
+                    //OutwardAnimatorOverrideTest.Log.LogMessage("Current Override Found Clip With Name : " + clipName);
                     return item;
                 }
             }
 
-            OutwardAnimatorOverrideTest.Log.LogMessage(clipName + " Clip not found in Current Override Controller");
+            //OutwardAnimatorOverrideTest.Log.LogMessage(clipName + " Clip not found in Current Override Controller");
             return null;
         }
         /// <summary>
@@ -67,7 +67,7 @@ namespace OutwardAOCTest
             }
             else
             {
-                  if(Debug)  OutwardAOCTest.OutwardAnimatorOverrideTest.Log.LogMessage("Animation has no events to copy");
+                  //if(Debug)  OutwardAOCTest.OutwardAnimatorOverrideTest.Log.LogMessage("Animation has no events to copy");
             }
 
             Controller.SetClip(originalClip, newClip, true);
@@ -88,29 +88,29 @@ namespace OutwardAOCTest
         /// <param name="newClip"></param>
         private void CopyAnimationEvents(AnimationClip originalClip, AnimationClip newClip)
         {
-            OutwardAnimatorOverrideTest.Log.LogMessage(string.Format("Copying Animation Events from {0} to {1}", originalClip.name, newClip.name));
+            //OutwardAnimatorOverrideTest.Log.LogMessage(string.Format("Copying Animation Events from {0} to {1}", originalClip.name, newClip.name));
 
             if (originalClip == null)
             {
-                if (Debug) OutwardAnimatorOverrideTest.Log.LogMessage(string.Format("originalClip is null"));
+                //if (Debug) OutwardAnimatorOverrideTest.Log.LogMessage(string.Format("originalClip is null"));
                 return;
             }
 
             if (originalClip.events == null)
             {
-                if (Debug) OutwardAnimatorOverrideTest.Log.LogMessage(string.Format("original clip events array is null"));
+                //if (Debug) OutwardAnimatorOverrideTest.Log.LogMessage(string.Format("original clip events array is null"));
                 return;
             }
 
             if (originalClip.events.Length == 0)
             {
-                if (Debug) OutwardAnimatorOverrideTest.Log.LogMessage(string.Format("original clip events array is empty"));
+                //if (Debug) OutwardAnimatorOverrideTest.Log.LogMessage(string.Format("original clip events array is empty"));
                 return;
             }
 
             if (newClip == null)
             {
-                if (Debug) OutwardAnimatorOverrideTest.Log.LogMessage(string.Format("new clip is null"));
+               //if (Debug) OutwardAnimatorOverrideTest.Log.LogMessage(string.Format("new clip is null"));
                 return;
             }
 
@@ -120,12 +120,12 @@ namespace OutwardAOCTest
             {
                 if (copyOfOriginalEvents[i] == null)
                 {
-                    if (Debug) OutwardAnimatorOverrideTest.Log.LogMessage(string.Format("Animation Event is null skipping"));
+                   // if (Debug) OutwardAnimatorOverrideTest.Log.LogMessage(string.Format("Animation Event is null skipping"));
                     continue;
                 }
                 else
                 {
-                    if (Debug) OutwardAnimatorOverrideTest.Log.LogMessage(string.Format("Copying Event name {0} {1}", copyOfOriginalEvents[i].m_FunctionName, copyOfOriginalEvents[i].m_Time));
+                    //if (Debug) OutwardAnimatorOverrideTest.Log.LogMessage(string.Format("Copying Event name {0} {1}", copyOfOriginalEvents[i].m_FunctionName, copyOfOriginalEvents[i].m_Time));
 
 
                     AnimationEvent newEvent = copyOfOriginalEvents[i];

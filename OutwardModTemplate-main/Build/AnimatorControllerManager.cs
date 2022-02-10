@@ -3,7 +3,7 @@ using System.Linq;
 using UnityEngine;
 
 
-namespace OutwardAOCTest
+namespace OutwardEmoAnim
 {
     public class AnimatorControllerManager
     {
@@ -44,7 +44,7 @@ namespace OutwardAOCTest
             if (overrideController != null)
             {
                 SetOverrideAnimatorController(overrideController);
-                if (Debug) OutwardAnimatorOverrideTest.Log.LogMessage(string.Format("Setting Override Controller to {0}", name));
+                //if (Debug) OutwardAnimatorOverrideTest.Log.LogMessage(string.Format("Setting Override Controller to {0}", name));
                 OnOverrideControllerApplied?.Invoke(name, overrideController);
             }
         }
@@ -70,22 +70,22 @@ namespace OutwardAOCTest
         /// </summary>
         public void TriggerConditionCheck()
         {
-            if(Debug) OutwardAnimatorOverrideTest.Log.LogMessage("Condition Check Triggered");
+           // if(Debug) OutwardAnimatorOverrideTest.Log.LogMessage("Condition Check Triggered");
 
             foreach (var item in _Animators)
             {
 
-                if (Debug) OutwardAnimatorOverrideTest.Log.LogMessage($"Checking {item.Key}  Conditions");
+               // if (Debug) OutwardAnimatorOverrideTest.Log.LogMessage($"Checking {item.Key}  Conditions");
                 foreach (var _item in item.Value.ConditionalOverrides.ToList())
                 {
                     if (_item.CheckCondition())
                     {
-                        if (Debug) OutwardAnimatorOverrideTest.Log.LogMessage($"Passed Condition for {_item.OriginalAnimation.name} overriding to {_item.NewAnimation.name}");
+                        //if (Debug) OutwardAnimatorOverrideTest.Log.LogMessage($"Passed Condition for {_item.OriginalAnimation.name} overriding to {_item.NewAnimation.name}");
                         item.Value.ReplaceAnimation(_item.OriginalAnimation, _item.NewAnimation);
                     }
                     else
                     {
-                        if (Debug) OutwardAnimatorOverrideTest.Log.LogMessage($"Failed Condition for {_item.OriginalAnimation.name}");
+                        //if (Debug) OutwardAnimatorOverrideTest.Log.LogMessage($"Failed Condition for {_item.OriginalAnimation.name}");
                         CustomAnimatorOverride customAnimatorOverride = GetAnimatorControllerByName(item.Key);
 
 
@@ -93,7 +93,7 @@ namespace OutwardAOCTest
                         {
                             if (customAnimatorOverride.AnimationIsOverriden(_item.OriginalAnimation))
                             {
-                                if (Debug) OutwardAnimatorOverrideTest.Log.LogMessage($"Reverting {_item.NewAnimation.name} to {_item.OriginalAnimation.name}");
+                                //if (Debug) OutwardAnimatorOverrideTest.Log.LogMessage($"Reverting {_item.NewAnimation.name} to {_item.OriginalAnimation.name}");
                                 //remove it
                                 customAnimatorOverride.ReplaceAnimation(_item.OriginalAnimation, null, false);
                             }
@@ -110,7 +110,7 @@ namespace OutwardAOCTest
         {
             _CurrentOverride = null;
             SetRunTimeAnimatorController(_Original);
-            if (Debug) OutwardAnimatorOverrideTest.Log.LogMessage("Returning to Original controller");
+            //if (Debug) OutwardAnimatorOverrideTest.Log.LogMessage("Returning to Original controller");
         }
         public void RevertToPreviousController()
         {
@@ -127,7 +127,7 @@ namespace OutwardAOCTest
         {
             if (!_Animators.ContainsKey(name))
             {
-                if (Debug) OutwardAnimatorOverrideTest.Log.LogMessage($"Adding New Animator Override Controller with name : {name}");
+                //if (Debug) OutwardAnimatorOverrideTest.Log.LogMessage($"Adding New Animator Override Controller with name : {name}");
                 CustomAnimatorOverride customAnimatorOverride = new CustomAnimatorOverride(new AnimatorOverrideController(_Original));
                 _Animators.Add(name, customAnimatorOverride);
 
