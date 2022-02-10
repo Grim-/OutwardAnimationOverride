@@ -31,7 +31,7 @@ Some notes regarding setting up Animation clips
 
 - The clips must be made for Humanoid animation rigs
 - The Players Character seems to use Root motion - So you can use Root motion clips
-- Sometimes you may need to set the animation clip to loop if an animation should loop, such as Idle.
+- Sometimes you may need to set the animation clip to loop if an animation should loop, such as Idle by checking 'Loop Time' in the "Animation" tab.
 - Some animations may cause the character to run at an angle, you can usually fix this by view the "Animation" tab and checking "Bake Into Pose" for Root Transform Rotation - usally the "Based Upon" option wants to be set to "Original"
 - You can also use the "Animation" tab to mirror a Animation for example, mirror a RightTurn animation into a LeftTurn animation.
 
